@@ -1,0 +1,440 @@
+fragment TaxonomyTermTags on TaxonomyTermTags {
+  reverseFieldTagsNode {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  reverseParentTaxonomyTerm {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryVid {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryRevisionUser {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryParent {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  tid
+  uuid
+  revisionId
+  langcode {
+    ... on FieldTaxonomyTermLangcode {
+      value
+      language {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          remoteId: id
+          argument
+          isDefault
+          name
+        }
+      }
+    }
+  }
+  vid {
+    ... on FieldTaxonomyTermVid {
+      targetId
+      entity {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  revisionCreated
+  revisionUser {
+    ... on FieldTaxonomyTermRevisionUser {
+      targetId
+      entity {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  revisionLogMessage
+  status
+  name
+  description {
+    ... on FieldTaxonomyTermDescription {
+      value
+      format
+      processed
+    }
+  }
+  weight
+  remoteParent: parent {
+    ... on FieldTaxonomyTermParent {
+      targetId
+      entity {
+        ... on TaxonomyTerm {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  changed
+  defaultLangcode
+  revisionDefault
+  revisionTranslationAffected
+  path {
+    ... on FieldTaxonomyTermPath {
+      alias
+      pid
+      langcode
+      pathauto
+    }
+  }
+  entityRendered
+  entityChanged
+  entityLabel
+  entityUuid
+  entityBundle
+  entityTranslations {
+    ... on Entity {
+      remoteTypeName: __typename
+      entityId
+    }
+  }
+  entityQueryExclusive {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  entityId
+  entityType
+  entityCreated
+  entityUrl {
+    ... on DefaultInternalUrl {
+      pathAlias
+      pathInternal
+      request {
+        ... on InternalResponse {
+          header
+          code
+          content
+        }
+      }
+      languageSwitchLinks {
+        ... on LanguageSwitchLink {
+          active
+          title
+          url {
+            ... on EntityCanonicalUrl {
+              pathAlias
+              pathInternal
+              request {
+                ... on InternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+              # languageSwitchLinks
+              languageInterfaceContext {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  remoteId: id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+              nodeContext {
+                ... on Node {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              currentUserContext {
+                ... on User {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              breadcrumb {
+                ... on Link {
+                  # url
+                  text
+                }
+              }
+              path
+              routed
+              entity {
+                ... on Entity {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+            }
+          }
+          language {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              remoteId: id
+              argument
+              isDefault
+              name
+            }
+          }
+        }
+      }
+      languageInterfaceContext {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          remoteId: id
+          argument
+          isDefault
+          name
+        }
+      }
+      nodeContext {
+        ... on Node {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      currentUserContext {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      breadcrumb {
+        ... on Link {
+          # url
+          text
+        }
+      }
+      path
+      routed
+    }
+    ... on ExternalUrl {
+      path
+      routed
+      request {
+        ... on ExternalResponse {
+          header
+          code
+          content
+        }
+      }
+    }
+    ... on EntityCanonicalUrl {
+      pathAlias
+      pathInternal
+      request {
+        ... on InternalResponse {
+          header
+          code
+          content
+        }
+      }
+      languageSwitchLinks {
+        ... on LanguageSwitchLink {
+          active
+          title
+          url {
+            ... on DefaultInternalUrl {
+              pathAlias
+              pathInternal
+              request {
+                ... on InternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+              # languageSwitchLinks
+              languageInterfaceContext {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  remoteId: id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+              nodeContext {
+                ... on Node {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              currentUserContext {
+                ... on User {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              breadcrumb {
+                ... on Link {
+                  # url
+                  text
+                }
+              }
+              path
+              routed
+            }
+          }
+          language {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              remoteId: id
+              argument
+              isDefault
+              name
+            }
+          }
+        }
+      }
+      languageInterfaceContext {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          remoteId: id
+          argument
+          isDefault
+          name
+        }
+      }
+      nodeContext {
+        ... on Node {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      currentUserContext {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      breadcrumb {
+        ... on Link {
+          # url
+          text
+        }
+      }
+      path
+      routed
+      entity {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  entityLanguage {
+    ... on Language {
+      direction
+      weight
+      isLocked
+      remoteId: id
+      argument
+      isDefault
+      name
+    }
+  }
+  entityPublished
+  entityRevisions {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  descriptionOfTaxonomyTermTags {
+    ... on FieldTaxonomyTermTagsDescription {
+      value
+      format
+      processed
+    }
+  }
+  parentOfTaxonomyTermTags {
+    ... on FieldTaxonomyTermTagsParent {
+      targetId
+      entity {
+        ... on TaxonomyTerm {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  pathOfTaxonomyTermTags {
+    ... on FieldTaxonomyTermTagsPath {
+      alias
+      pid
+      langcode
+      pathauto
+    }
+  }
+}

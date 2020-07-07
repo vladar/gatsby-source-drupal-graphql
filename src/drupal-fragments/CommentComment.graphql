@@ -1,0 +1,436 @@
+fragment CommentComment on CommentComment {
+  reversePidComment {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryCommentType {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryUid {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryPid {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryEntityId {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  cid
+  uuid
+  langcode {
+    ... on FieldCommentLangcode {
+      value
+      language {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          remoteId: id
+          argument
+          isDefault
+          name
+        }
+      }
+    }
+  }
+  commentType {
+    ... on FieldCommentCommentType {
+      targetId
+      entity {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  status
+  uid {
+    ... on FieldCommentUid {
+      targetId
+      entity {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  pid {
+    ... on FieldCommentPid {
+      targetId
+      entity {
+        ... on Comment {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  subject
+  name
+  mail
+  homepage
+  hostname
+  created
+  changed
+  thread
+  fieldName
+  defaultLangcode
+  entityRendered
+  entityIdOfComment {
+    ... on FieldCommentEntityId {
+      targetId
+      entity {
+        ... on Node {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  entityTypeOfComment
+  entityChanged
+  entityLabel
+  entityUuid
+  entityBundle
+  entityTranslations {
+    ... on Entity {
+      remoteTypeName: __typename
+      entityId
+    }
+  }
+  entityQueryExclusive {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  entityId
+  entityType
+  entityCreated
+  entityUrl {
+    ... on DefaultInternalUrl {
+      pathAlias
+      pathInternal
+      request {
+        ... on InternalResponse {
+          header
+          code
+          content
+        }
+      }
+      languageSwitchLinks {
+        ... on LanguageSwitchLink {
+          active
+          title
+          url {
+            ... on EntityCanonicalUrl {
+              pathAlias
+              pathInternal
+              request {
+                ... on InternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+              # languageSwitchLinks
+              languageInterfaceContext {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  remoteId: id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+              nodeContext {
+                ... on Node {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              currentUserContext {
+                ... on User {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              breadcrumb {
+                ... on Link {
+                  # url
+                  text
+                }
+              }
+              path
+              routed
+              entity {
+                ... on Entity {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+            }
+          }
+          language {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              remoteId: id
+              argument
+              isDefault
+              name
+            }
+          }
+        }
+      }
+      languageInterfaceContext {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          remoteId: id
+          argument
+          isDefault
+          name
+        }
+      }
+      nodeContext {
+        ... on Node {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      currentUserContext {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      breadcrumb {
+        ... on Link {
+          # url
+          text
+        }
+      }
+      path
+      routed
+    }
+    ... on ExternalUrl {
+      path
+      routed
+      request {
+        ... on ExternalResponse {
+          header
+          code
+          content
+        }
+      }
+    }
+    ... on EntityCanonicalUrl {
+      pathAlias
+      pathInternal
+      request {
+        ... on InternalResponse {
+          header
+          code
+          content
+        }
+      }
+      languageSwitchLinks {
+        ... on LanguageSwitchLink {
+          active
+          title
+          url {
+            ... on DefaultInternalUrl {
+              pathAlias
+              pathInternal
+              request {
+                ... on InternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+              # languageSwitchLinks
+              languageInterfaceContext {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  remoteId: id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+              nodeContext {
+                ... on Node {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              currentUserContext {
+                ... on User {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              breadcrumb {
+                ... on Link {
+                  # url
+                  text
+                }
+              }
+              path
+              routed
+            }
+          }
+          language {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              remoteId: id
+              argument
+              isDefault
+              name
+            }
+          }
+        }
+      }
+      languageInterfaceContext {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          remoteId: id
+          argument
+          isDefault
+          name
+        }
+      }
+      nodeContext {
+        ... on Node {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      currentUserContext {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      breadcrumb {
+        ... on Link {
+          # url
+          text
+        }
+      }
+      path
+      routed
+      entity {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  entityLanguage {
+    ... on Language {
+      direction
+      weight
+      isLocked
+      remoteId: id
+      argument
+      isDefault
+      name
+    }
+  }
+  entityPublished
+  entityOwner {
+    ... on User {
+      remoteTypeName: __typename
+      entityId
+    }
+  }
+  commentBody {
+    ... on FieldCommentCommentCommentBody {
+      value
+      format
+      processed
+    }
+  }
+  uidOfCommentComment {
+    ... on FieldCommentCommentUid {
+      targetId
+      entity {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  entityIdOfCommentComment {
+    ... on FieldCommentCommentEntityId {
+      targetId
+      entity {
+        ... on Node {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+}

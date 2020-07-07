@@ -1,0 +1,517 @@
+fragment NodeArticle on NodeArticle {
+  reverseEntityIdComment {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryType {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryRevisionUid {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryUid {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  nid
+  uuid
+  vid
+  langcode {
+    ... on FieldNodeLangcode {
+      value
+      language {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          remoteId: id
+          argument
+          isDefault
+          name
+        }
+      }
+    }
+  }
+  type {
+    ... on FieldNodeType {
+      targetId
+      entity {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  revisionTimestamp
+  revisionUid {
+    ... on FieldNodeRevisionUid {
+      targetId
+      entity {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  revisionLog
+  status
+  uid {
+    ... on FieldNodeUid {
+      targetId
+      entity {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  title
+  created
+  changed
+  promote
+  sticky
+  defaultLangcode
+  revisionDefault
+  revisionTranslationAffected
+  path {
+    ... on FieldNodePath {
+      alias
+      pid
+      langcode
+      pathauto
+    }
+  }
+  menuLink {
+    ... on FieldNodeMenuLink {
+      targetId
+      entity {
+        ... on MenuLinkContent {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  contentTranslationSource {
+    ... on FieldNodeContentTranslationSource {
+      value
+      language {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          remoteId: id
+          argument
+          isDefault
+          name
+        }
+      }
+    }
+  }
+  contentTranslationOutdated
+  entityRendered
+  entityChanged
+  entityLabel
+  entityUuid
+  entityBundle
+  entityTranslations {
+    ... on Entity {
+      remoteTypeName: __typename
+      entityId
+    }
+  }
+  entityQueryExclusive {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  entityId
+  entityType
+  entityCreated
+  entityUrl {
+    ... on DefaultInternalUrl {
+      pathAlias
+      pathInternal
+      request {
+        ... on InternalResponse {
+          header
+          code
+          content
+        }
+      }
+      languageSwitchLinks {
+        ... on LanguageSwitchLink {
+          active
+          title
+          url {
+            ... on EntityCanonicalUrl {
+              pathAlias
+              pathInternal
+              request {
+                ... on InternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+              languageSwitchLinks {
+                url {
+                  path
+                }
+              }
+              languageInterfaceContext {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  remoteId: id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+              nodeContext {
+                ... on Node {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              currentUserContext {
+                ... on User {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              breadcrumb {
+                ... on Link {
+                  url {
+                    path
+                  }
+                  text
+                }
+              }
+              path
+              routed
+              entity {
+                ... on Entity {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+            }
+          }
+          language {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              remoteId: id
+              argument
+              isDefault
+              name
+            }
+          }
+        }
+      }
+      languageInterfaceContext {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          remoteId: id
+          argument
+          isDefault
+          name
+        }
+      }
+      nodeContext {
+        ... on Node {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      currentUserContext {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      breadcrumb {
+        ... on Link {
+          # url
+          text
+        }
+      }
+      path
+      routed
+    }
+    ... on ExternalUrl {
+      path
+      routed
+      request {
+        ... on ExternalResponse {
+          header
+          code
+          content
+        }
+      }
+    }
+    ... on EntityCanonicalUrl {
+      pathAlias
+      pathInternal
+      request {
+        ... on InternalResponse {
+          header
+          code
+          content
+        }
+      }
+      languageSwitchLinks {
+        ... on LanguageSwitchLink {
+          active
+          title
+          url {
+            ... on DefaultInternalUrl {
+              pathAlias
+              pathInternal
+              request {
+                ... on InternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+              # languageSwitchLinks
+              languageInterfaceContext {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  remoteId: id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+              nodeContext {
+                ... on Node {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              currentUserContext {
+                ... on User {
+                  remoteTypeName: __typename
+                  entityId
+                }
+              }
+              breadcrumb {
+                ... on Link {
+                  # url
+                  text
+                }
+              }
+              path
+              routed
+            }
+          }
+          language {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              remoteId: id
+              argument
+              isDefault
+              name
+            }
+          }
+        }
+      }
+      languageInterfaceContext {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          remoteId: id
+          argument
+          isDefault
+          name
+        }
+      }
+      nodeContext {
+        ... on Node {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      currentUserContext {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      breadcrumb {
+        ... on Link {
+          # url
+          text
+        }
+      }
+      path
+      routed
+      entity {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  entityLanguage {
+    ... on Language {
+      direction
+      weight
+      isLocked
+      remoteId: id
+      argument
+      isDefault
+      name
+    }
+  }
+  entityPublished
+  entityOwner {
+    ... on User {
+      remoteTypeName: __typename
+      entityId
+    }
+  }
+  entityRevisions {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  queryFieldTags {
+    ... on EntityQueryResult {
+      entities {
+        ... on Entity {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      count
+    }
+  }
+  body {
+    ... on FieldNodeArticleBody {
+      value
+      format
+      processed
+      summary
+      summaryProcessed
+    }
+  }
+  comment {
+    ... on FieldNodeArticleComment {
+      status
+      cid
+      lastCommentTimestamp
+      lastCommentName
+      lastCommentUid
+      commentCount
+    }
+  }
+  fieldImage {
+    ... on FieldNodeArticleFieldImage {
+      targetId
+      entity {
+        ... on File {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+      alt
+      title
+      width
+      height
+      url
+    }
+  }
+  fieldTags {
+    ... on FieldNodeArticleFieldTags {
+      targetId
+      entity {
+        ... on TaxonomyTerm {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  uidOfNodeArticle {
+    ... on FieldNodeArticleUid {
+      targetId
+      entity {
+        ... on User {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+  menuLinkOfNodeArticle {
+    ... on FieldNodeArticleMenuLink {
+      targetId
+      entity {
+        ... on MenuLinkContent {
+          remoteTypeName: __typename
+          entityId
+        }
+      }
+    }
+  }
+}
