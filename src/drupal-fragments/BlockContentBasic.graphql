@@ -5,6 +5,9 @@ fragment BlockContentBasic on BlockContentBasic {
         ... on Entity {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
       count
@@ -16,6 +19,9 @@ fragment BlockContentBasic on BlockContentBasic {
         ... on Entity {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
       count
@@ -32,7 +38,7 @@ fragment BlockContentBasic on BlockContentBasic {
           direction
           weight
           isLocked
-          remoteId: id
+          id
           argument
           isDefault
           name
@@ -47,6 +53,9 @@ fragment BlockContentBasic on BlockContentBasic {
         ... on Entity {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
     }
@@ -59,6 +68,9 @@ fragment BlockContentBasic on BlockContentBasic {
         ... on User {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
     }
@@ -80,6 +92,9 @@ fragment BlockContentBasic on BlockContentBasic {
     ... on Entity {
       remoteTypeName: __typename
       entityId
+      entityLanguage {
+        id
+      }
     }
   }
   entityQueryExclusive {
@@ -88,6 +103,9 @@ fragment BlockContentBasic on BlockContentBasic {
         ... on Entity {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
       count
@@ -112,52 +130,68 @@ fragment BlockContentBasic on BlockContentBasic {
           active
           title
           url {
-            ... on EntityCanonicalUrl {
-              pathAlias
-              pathInternal
-              request {
-                ... on InternalResponse {
-                  header
-                  code
-                  content
+            ... on InternalUrl {
+              remoteTypeName: __typename
+              ... on EntityCanonicalUrl {
+                pathAlias
+                pathInternal
+                request {
+                  ... on InternalResponse {
+                    header
+                    code
+                    content
+                  }
                 }
-              }
-              # languageSwitchLinks
-              languageInterfaceContext {
-                ... on Language {
-                  direction
-                  weight
-                  isLocked
-                  remoteId: id
-                  argument
-                  isDefault
-                  name
-                }
-              }
-              nodeContext {
-                ... on Node {
+                languageSwitchLinks {
                   remoteTypeName: __typename
-                  entityId
                 }
-              }
-              currentUserContext {
-                ... on User {
-                  remoteTypeName: __typename
-                  entityId
+                languageInterfaceContext {
+                  ... on Language {
+                    direction
+                    weight
+                    isLocked
+                    id
+                    argument
+                    isDefault
+                    name
+                  }
                 }
-              }
-              breadcrumb {
-                ... on Link {
-                  # url
-                  text
+                nodeContext {
+                  ... on Node {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
                 }
-              }
-              path
-              routed
-              entity {
-                ... on Entity {
-                  remoteTypeName: __typename
-                  entityId
+                currentUserContext {
+                  ... on User {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                }
+                breadcrumb {
+                  ... on Link {
+                    url {
+                      remoteTypeName: __typename
+                    }
+                    text
+                  }
+                }
+                path
+                routed
+                entity {
+                  ... on Entity {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
                 }
               }
             }
@@ -167,7 +201,7 @@ fragment BlockContentBasic on BlockContentBasic {
               direction
               weight
               isLocked
-              remoteId: id
+              id
               argument
               isDefault
               name
@@ -180,7 +214,7 @@ fragment BlockContentBasic on BlockContentBasic {
           direction
           weight
           isLocked
-          remoteId: id
+          id
           argument
           isDefault
           name
@@ -190,17 +224,25 @@ fragment BlockContentBasic on BlockContentBasic {
         ... on Node {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
       currentUserContext {
         ... on User {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
       breadcrumb {
         ... on Link {
-          # url
+          url {
+            remoteTypeName: __typename
+          }
           text
         }
       }
@@ -233,48 +275,61 @@ fragment BlockContentBasic on BlockContentBasic {
           active
           title
           url {
-            ... on DefaultInternalUrl {
-              pathAlias
-              pathInternal
-              request {
-                ... on InternalResponse {
-                  header
-                  code
-                  content
+            ... on InternalUrl {
+              ... on DefaultInternalUrl {
+                pathAlias
+                pathInternal
+                request {
+                  ... on InternalResponse {
+                    header
+                    code
+                    content
+                  }
                 }
-              }
-              # languageSwitchLinks
-              languageInterfaceContext {
-                ... on Language {
-                  direction
-                  weight
-                  isLocked
-                  remoteId: id
-                  argument
-                  isDefault
-                  name
-                }
-              }
-              nodeContext {
-                ... on Node {
+                languageSwitchLinks {
                   remoteTypeName: __typename
-                  entityId
                 }
-              }
-              currentUserContext {
-                ... on User {
-                  remoteTypeName: __typename
-                  entityId
+                languageInterfaceContext {
+                  ... on Language {
+                    direction
+                    weight
+                    isLocked
+                    id
+                    argument
+                    isDefault
+                    name
+                  }
                 }
-              }
-              breadcrumb {
-                ... on Link {
-                  # url
-                  text
+                nodeContext {
+                  ... on Node {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
                 }
+                currentUserContext {
+                  ... on User {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                }
+                breadcrumb {
+                  ... on Link {
+                    url {
+                      remoteTypeName: __typename
+                    }
+                    text
+                  }
+                }
+                path
+                routed
               }
-              path
-              routed
+              remoteTypeName: __typename
             }
           }
           language {
@@ -282,7 +337,7 @@ fragment BlockContentBasic on BlockContentBasic {
               direction
               weight
               isLocked
-              remoteId: id
+              id
               argument
               isDefault
               name
@@ -295,7 +350,7 @@ fragment BlockContentBasic on BlockContentBasic {
           direction
           weight
           isLocked
-          remoteId: id
+          id
           argument
           isDefault
           name
@@ -305,17 +360,25 @@ fragment BlockContentBasic on BlockContentBasic {
         ... on Node {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
       currentUserContext {
         ... on User {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
       breadcrumb {
         ... on Link {
-          # url
+          url {
+            remoteTypeName: __typename
+          }
           text
         }
       }
@@ -325,6 +388,9 @@ fragment BlockContentBasic on BlockContentBasic {
         ... on Entity {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
     }
@@ -334,7 +400,7 @@ fragment BlockContentBasic on BlockContentBasic {
       direction
       weight
       isLocked
-      remoteId: id
+      id
       argument
       isDefault
       name
@@ -347,6 +413,9 @@ fragment BlockContentBasic on BlockContentBasic {
         ... on Entity {
           remoteTypeName: __typename
           entityId
+          entityLanguage {
+            id
+          }
         }
       }
       count

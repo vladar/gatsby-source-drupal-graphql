@@ -43,35 +43,69 @@ async function writeCompiledQueries(nodeDocs) {
   }
 }
 
-async function createSourcingConfig(gatsbyApi) {
-  // Step1. Setup remote schema:
-  if (!process.env.DRUPAL_GRAPHQL_URL) {
-    throw new Error("Missing process.env.DRUPAL_GRAPHQL_URL")
+async function createSourcingConfig(gatsbyApi, pluginOptions) {
+  // TODO: use joi to validate plugin options?
+  const { url, languages = [`EN`] } = pluginOptions
+
+  if (!url) {
+    throw new Error("Missing `url` option")
   }
-  const execute = createDefaultQueryExecutor(process.env.DRUPAL_GRAPHQL_URL)
+
+  // Step1. Setup remote schema:
+  const execute = createDefaultQueryExecutor(url)
   const schema = await loadSchema(execute)
+
+  // const entityInterface = schema.getType(`Entity`)
+  // const allEntities = schema.getPossibleTypes(entityInterface)
 
   // Step2. Configure Gatsby node types
   const gatsbyNodeTypes = [
     {
       remoteTypeName: `NodeArticle`,
-      remoteIdFields: [`__typename`, `entityId`],
-      queries: `
-        query LIST_NodeArticle {
-          nodeQuery(limit: $limit offset: $offset) {
-            entities
+      queries: [
+        ...languages.map(language => `
+          query LIST_NodeArticle_${language} {
+            nodeQuery(
+              filter: {
+                conditions: [
+                  { operator: EQUAL, field: "status", value: ["1"] }
+                  { operator: EQUAL, field: "type", value: ["article"] }
+                ]
+              }
+              limit: $limit
+              offset: $offset
+            ) {
+              entities(language: ${language}) { ..._NodeArticleId_ }
+            }
           }
-        }`,
+        `),
+        `
+          fragment _NodeArticleId_ on NodeArticle {
+            __typename
+            entityId
+            entityLanguage {
+              id
+            }
+          }
+        `
+      ].join("\n")
     },
     {
       remoteTypeName: `NodePage`,
-      remoteIdFields: [`__typename`, `entityId`],
       queries: `
         query LIST_NodePage {
           nodeQuery(limit: $limit offset: $offset) {
-            entities
+            entities { ..._NodePageId_ }
           }
-        }`,
+        }
+        fragment _NodePageId_ on NodePage {
+          __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+      `,
     },
   ]
 
@@ -82,12 +116,23 @@ async function createSourcingConfig(gatsbyApi) {
   const dynamicTypes = nodeTypes
     .filter(type => !gatsbyNodeTypes.some(t => t.remoteTypeName === type.name))
     .map(type => {
+      const idFragmentName = `_${type.name}Id_`
       return {
         remoteTypeName: type.name,
-        remoteIdFields: [`__typename`, `entityId`],
         queries: `
           query LIST_${type.name} {
-            commentQuery(limit: $limit offset: $offset) { entities }
+            commentQuery(limit: $limit offset: $offset) {
+              entities {
+                ...${idFragmentName}
+              }
+            }
+          }
+          fragment ${idFragmentName} on ${type.name} {
+            __typename
+            entityId
+            entityLanguage {
+              id
+            }
           }
         `,
       }
@@ -114,18 +159,21 @@ async function createSourcingConfig(gatsbyApi) {
   return {
     gatsbyApi,
     schema,
-    execute: function (...args) {
-      console.log(args[0].operationName, args[0].variables)
-      return execute(...args)
-    },
-    gatsbyTypePrefix: `Drupal_`,
+    execute,
+    gatsbyTypePrefix: `Drupal`,
     gatsbyNodeDefs: buildNodeDefinitions({ gatsbyNodeTypes, documents }),
     paginationAdapters: [PaginateDrupal],
   }
 }
 
-exports.sourceNodes = async (gatsbyApi, pluginOptions) => {
-  const config = await createSourcingConfig(gatsbyApi)
+// FIXME:
+const pluginOptions = {
+  url: process.env.DRUPAL_GRAPHQL_URL,
+  languages: [`EN`, `ES`],
+}
+
+exports.sourceNodes = async gatsbyApi => {
+  const config = await createSourcingConfig(gatsbyApi, pluginOptions)
 
   // Step5. Add explicit types to gatsby schema
   await createSchemaCustomization(config)
