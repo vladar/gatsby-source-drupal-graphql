@@ -4,22 +4,771 @@ fragment PathAlias on PathAlias {
   entityUuid
   entityBundle
   entityTranslations {
-    ... on Entity {
+    ... on User {
       remoteTypeName: __typename
       entityId
       entityLanguage {
         id
       }
     }
+    ... on File {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on PathAlias {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on BlockContentBasic {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on CommentComment {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on ContactMessageFeedback {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on ContactMessagePersonal {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on NodeArticle {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on NodePage {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on ShortcutDefault {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on TaxonomyTermTags {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on MenuLinkContentMenuLinkContent {
+      remoteTypeName: __typename
+      entityId
+      entityLanguage {
+        id
+      }
+    }
+    ... on UnexposedEntity {
+      entityChanged
+      entityLabel
+      entityUuid
+      entityBundle
+      entityTranslations {
+        remoteTypeName: __typename
+      }
+      entityQueryExclusive {
+        ... on EntityQueryResult {
+          entities {
+            remoteTypeName: __typename
+          }
+          count
+        }
+      }
+      entityId
+      entityType
+      entityCreated
+      entityUrl {
+        ... on DefaultInternalUrl {
+          pathAlias
+          pathInternal
+          request {
+            ... on InternalResponse {
+              header
+              code
+              content
+            }
+          }
+          languageSwitchLinks {
+            ... on LanguageSwitchLink {
+              active
+              title
+              url {
+                ... on InternalUrl {
+                  remoteTypeName: __typename
+                  ... on EntityCanonicalUrl {
+                    pathAlias
+                    pathInternal
+                    request {
+                      ... on InternalResponse {
+                        header
+                        code
+                        content
+                      }
+                    }
+                    languageSwitchLinks {
+                      remoteTypeName: __typename
+                    }
+                    languageInterfaceContext {
+                      ... on Language {
+                        direction
+                        weight
+                        isLocked
+                        id
+                        argument
+                        isDefault
+                        name
+                      }
+                    }
+                    nodeContext {
+                      ... on Node {
+                        remoteTypeName: __typename
+                        entityId
+                        entityLanguage {
+                          id
+                        }
+                      }
+                    }
+                    currentUserContext {
+                      ... on User {
+                        remoteTypeName: __typename
+                        entityId
+                        entityLanguage {
+                          id
+                        }
+                      }
+                    }
+                    breadcrumb {
+                      ... on Link {
+                        url {
+                          remoteTypeName: __typename
+                        }
+                        text
+                      }
+                    }
+                    path
+                    routed
+                    entity {
+                      remoteTypeName: __typename
+                    }
+                  }
+                }
+              }
+              language {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+            }
+          }
+          languageInterfaceContext {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              id
+              argument
+              isDefault
+              name
+            }
+          }
+          nodeContext {
+            ... on Node {
+              remoteTypeName: __typename
+              entityId
+              entityLanguage {
+                id
+              }
+            }
+          }
+          currentUserContext {
+            ... on User {
+              remoteTypeName: __typename
+              entityId
+              entityLanguage {
+                id
+              }
+            }
+          }
+          breadcrumb {
+            ... on Link {
+              url {
+                remoteTypeName: __typename
+              }
+              text
+            }
+          }
+          path
+          routed
+        }
+        ... on ExternalUrl {
+          path
+          routed
+          request {
+            ... on ExternalResponse {
+              header
+              code
+              content
+            }
+          }
+        }
+        ... on EntityCanonicalUrl {
+          pathAlias
+          pathInternal
+          request {
+            ... on InternalResponse {
+              header
+              code
+              content
+            }
+          }
+          languageSwitchLinks {
+            ... on LanguageSwitchLink {
+              active
+              title
+              url {
+                ... on InternalUrl {
+                  ... on DefaultInternalUrl {
+                    pathAlias
+                    pathInternal
+                    request {
+                      ... on InternalResponse {
+                        header
+                        code
+                        content
+                      }
+                    }
+                    languageSwitchLinks {
+                      remoteTypeName: __typename
+                    }
+                    languageInterfaceContext {
+                      ... on Language {
+                        direction
+                        weight
+                        isLocked
+                        id
+                        argument
+                        isDefault
+                        name
+                      }
+                    }
+                    nodeContext {
+                      ... on Node {
+                        remoteTypeName: __typename
+                        entityId
+                        entityLanguage {
+                          id
+                        }
+                      }
+                    }
+                    currentUserContext {
+                      ... on User {
+                        remoteTypeName: __typename
+                        entityId
+                        entityLanguage {
+                          id
+                        }
+                      }
+                    }
+                    breadcrumb {
+                      ... on Link {
+                        url {
+                          remoteTypeName: __typename
+                        }
+                        text
+                      }
+                    }
+                    path
+                    routed
+                  }
+                  remoteTypeName: __typename
+                }
+              }
+              language {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+            }
+          }
+          languageInterfaceContext {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              id
+              argument
+              isDefault
+              name
+            }
+          }
+          nodeContext {
+            ... on Node {
+              remoteTypeName: __typename
+              entityId
+              entityLanguage {
+                id
+              }
+            }
+          }
+          currentUserContext {
+            ... on User {
+              remoteTypeName: __typename
+              entityId
+              entityLanguage {
+                id
+              }
+            }
+          }
+          breadcrumb {
+            ... on Link {
+              url {
+                remoteTypeName: __typename
+              }
+              text
+            }
+          }
+          path
+          routed
+          entity {
+            remoteTypeName: __typename
+          }
+        }
+      }
+      entityLanguage {
+        ... on Language {
+          direction
+          weight
+          isLocked
+          id
+          argument
+          isDefault
+          name
+        }
+      }
+    }
   }
   entityQueryExclusive {
     ... on EntityQueryResult {
       entities {
-        ... on Entity {
+        ... on User {
           remoteTypeName: __typename
           entityId
           entityLanguage {
             id
+          }
+        }
+        ... on File {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on PathAlias {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on BlockContentBasic {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on CommentComment {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on ContactMessageFeedback {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on ContactMessagePersonal {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on NodeArticle {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on NodePage {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on ShortcutDefault {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on TaxonomyTermTags {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on MenuLinkContentMenuLinkContent {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on UnexposedEntity {
+          entityChanged
+          entityLabel
+          entityUuid
+          entityBundle
+          entityTranslations {
+            remoteTypeName: __typename
+          }
+          entityQueryExclusive {
+            remoteTypeName: __typename
+          }
+          entityId
+          entityType
+          entityCreated
+          entityUrl {
+            ... on DefaultInternalUrl {
+              pathAlias
+              pathInternal
+              request {
+                ... on InternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+              languageSwitchLinks {
+                ... on LanguageSwitchLink {
+                  active
+                  title
+                  url {
+                    ... on InternalUrl {
+                      remoteTypeName: __typename
+                      ... on EntityCanonicalUrl {
+                        pathAlias
+                        pathInternal
+                        request {
+                          ... on InternalResponse {
+                            header
+                            code
+                            content
+                          }
+                        }
+                        languageSwitchLinks {
+                          remoteTypeName: __typename
+                        }
+                        languageInterfaceContext {
+                          ... on Language {
+                            direction
+                            weight
+                            isLocked
+                            id
+                            argument
+                            isDefault
+                            name
+                          }
+                        }
+                        nodeContext {
+                          ... on Node {
+                            remoteTypeName: __typename
+                            entityId
+                            entityLanguage {
+                              id
+                            }
+                          }
+                        }
+                        currentUserContext {
+                          ... on User {
+                            remoteTypeName: __typename
+                            entityId
+                            entityLanguage {
+                              id
+                            }
+                          }
+                        }
+                        breadcrumb {
+                          ... on Link {
+                            url {
+                              remoteTypeName: __typename
+                            }
+                            text
+                          }
+                        }
+                        path
+                        routed
+                        entity {
+                          remoteTypeName: __typename
+                        }
+                      }
+                    }
+                  }
+                  language {
+                    ... on Language {
+                      direction
+                      weight
+                      isLocked
+                      id
+                      argument
+                      isDefault
+                      name
+                    }
+                  }
+                }
+              }
+              languageInterfaceContext {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+              nodeContext {
+                ... on Node {
+                  remoteTypeName: __typename
+                  entityId
+                  entityLanguage {
+                    id
+                  }
+                }
+              }
+              currentUserContext {
+                ... on User {
+                  remoteTypeName: __typename
+                  entityId
+                  entityLanguage {
+                    id
+                  }
+                }
+              }
+              breadcrumb {
+                ... on Link {
+                  url {
+                    remoteTypeName: __typename
+                  }
+                  text
+                }
+              }
+              path
+              routed
+            }
+            ... on ExternalUrl {
+              path
+              routed
+              request {
+                ... on ExternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+            }
+            ... on EntityCanonicalUrl {
+              pathAlias
+              pathInternal
+              request {
+                ... on InternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+              languageSwitchLinks {
+                ... on LanguageSwitchLink {
+                  active
+                  title
+                  url {
+                    ... on InternalUrl {
+                      ... on DefaultInternalUrl {
+                        pathAlias
+                        pathInternal
+                        request {
+                          ... on InternalResponse {
+                            header
+                            code
+                            content
+                          }
+                        }
+                        languageSwitchLinks {
+                          remoteTypeName: __typename
+                        }
+                        languageInterfaceContext {
+                          ... on Language {
+                            direction
+                            weight
+                            isLocked
+                            id
+                            argument
+                            isDefault
+                            name
+                          }
+                        }
+                        nodeContext {
+                          ... on Node {
+                            remoteTypeName: __typename
+                            entityId
+                            entityLanguage {
+                              id
+                            }
+                          }
+                        }
+                        currentUserContext {
+                          ... on User {
+                            remoteTypeName: __typename
+                            entityId
+                            entityLanguage {
+                              id
+                            }
+                          }
+                        }
+                        breadcrumb {
+                          ... on Link {
+                            url {
+                              remoteTypeName: __typename
+                            }
+                            text
+                          }
+                        }
+                        path
+                        routed
+                      }
+                      remoteTypeName: __typename
+                    }
+                  }
+                  language {
+                    ... on Language {
+                      direction
+                      weight
+                      isLocked
+                      id
+                      argument
+                      isDefault
+                      name
+                    }
+                  }
+                }
+              }
+              languageInterfaceContext {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+              nodeContext {
+                ... on Node {
+                  remoteTypeName: __typename
+                  entityId
+                  entityLanguage {
+                    id
+                  }
+                }
+              }
+              currentUserContext {
+                ... on User {
+                  remoteTypeName: __typename
+                  entityId
+                  entityLanguage {
+                    id
+                  }
+                }
+              }
+              breadcrumb {
+                ... on Link {
+                  url {
+                    remoteTypeName: __typename
+                  }
+                  text
+                }
+              }
+              path
+              routed
+              entity {
+                remoteTypeName: __typename
+              }
+            }
+          }
+          entityLanguage {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              id
+              argument
+              isDefault
+              name
+            }
           }
         }
       }
@@ -100,11 +849,122 @@ fragment PathAlias on PathAlias {
                 path
                 routed
                 entity {
-                  ... on Entity {
+                  ... on User {
                     remoteTypeName: __typename
                     entityId
                     entityLanguage {
                       id
+                    }
+                  }
+                  ... on File {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on PathAlias {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on BlockContentBasic {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on CommentComment {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on ContactMessageFeedback {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on ContactMessagePersonal {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on NodeArticle {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on NodePage {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on ShortcutDefault {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on TaxonomyTermTags {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on MenuLinkContentMenuLinkContent {
+                    remoteTypeName: __typename
+                    entityId
+                    entityLanguage {
+                      id
+                    }
+                  }
+                  ... on UnexposedEntity {
+                    entityChanged
+                    entityLabel
+                    entityUuid
+                    entityBundle
+                    entityTranslations {
+                      remoteTypeName: __typename
+                    }
+                    entityQueryExclusive {
+                      ... on EntityQueryResult {
+                        entities {
+                          remoteTypeName: __typename
+                        }
+                        count
+                      }
+                    }
+                    entityId
+                    entityType
+                    entityCreated
+                    entityUrl {
+                      remoteTypeName: __typename
+                    }
+                    entityLanguage {
+                      ... on Language {
+                        direction
+                        weight
+                        isLocked
+                        id
+                        argument
+                        isDefault
+                        name
+                      }
                     }
                   }
                 }
@@ -300,11 +1160,122 @@ fragment PathAlias on PathAlias {
       path
       routed
       entity {
-        ... on Entity {
+        ... on User {
           remoteTypeName: __typename
           entityId
           entityLanguage {
             id
+          }
+        }
+        ... on File {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on PathAlias {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on BlockContentBasic {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on CommentComment {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on ContactMessageFeedback {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on ContactMessagePersonal {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on NodeArticle {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on NodePage {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on ShortcutDefault {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on TaxonomyTermTags {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on MenuLinkContentMenuLinkContent {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on UnexposedEntity {
+          entityChanged
+          entityLabel
+          entityUuid
+          entityBundle
+          entityTranslations {
+            remoteTypeName: __typename
+          }
+          entityQueryExclusive {
+            ... on EntityQueryResult {
+              entities {
+                remoteTypeName: __typename
+              }
+              count
+            }
+          }
+          entityId
+          entityType
+          entityCreated
+          entityUrl {
+            remoteTypeName: __typename
+          }
+          entityLanguage {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              id
+              argument
+              isDefault
+              name
+            }
           }
         }
       }
@@ -325,11 +1296,383 @@ fragment PathAlias on PathAlias {
   entityRevisions {
     ... on EntityQueryResult {
       entities {
-        ... on Entity {
+        ... on User {
           remoteTypeName: __typename
           entityId
           entityLanguage {
             id
+          }
+        }
+        ... on File {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on PathAlias {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on BlockContentBasic {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on CommentComment {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on ContactMessageFeedback {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on ContactMessagePersonal {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on NodeArticle {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on NodePage {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on ShortcutDefault {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on TaxonomyTermTags {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on MenuLinkContentMenuLinkContent {
+          remoteTypeName: __typename
+          entityId
+          entityLanguage {
+            id
+          }
+        }
+        ... on UnexposedEntity {
+          entityChanged
+          entityLabel
+          entityUuid
+          entityBundle
+          entityTranslations {
+            remoteTypeName: __typename
+          }
+          entityQueryExclusive {
+            remoteTypeName: __typename
+          }
+          entityId
+          entityType
+          entityCreated
+          entityUrl {
+            ... on DefaultInternalUrl {
+              pathAlias
+              pathInternal
+              request {
+                ... on InternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+              languageSwitchLinks {
+                ... on LanguageSwitchLink {
+                  active
+                  title
+                  url {
+                    ... on InternalUrl {
+                      remoteTypeName: __typename
+                      ... on EntityCanonicalUrl {
+                        pathAlias
+                        pathInternal
+                        request {
+                          ... on InternalResponse {
+                            header
+                            code
+                            content
+                          }
+                        }
+                        languageSwitchLinks {
+                          remoteTypeName: __typename
+                        }
+                        languageInterfaceContext {
+                          ... on Language {
+                            direction
+                            weight
+                            isLocked
+                            id
+                            argument
+                            isDefault
+                            name
+                          }
+                        }
+                        nodeContext {
+                          ... on Node {
+                            remoteTypeName: __typename
+                            entityId
+                            entityLanguage {
+                              id
+                            }
+                          }
+                        }
+                        currentUserContext {
+                          ... on User {
+                            remoteTypeName: __typename
+                            entityId
+                            entityLanguage {
+                              id
+                            }
+                          }
+                        }
+                        breadcrumb {
+                          ... on Link {
+                            url {
+                              remoteTypeName: __typename
+                            }
+                            text
+                          }
+                        }
+                        path
+                        routed
+                        entity {
+                          remoteTypeName: __typename
+                        }
+                      }
+                    }
+                  }
+                  language {
+                    ... on Language {
+                      direction
+                      weight
+                      isLocked
+                      id
+                      argument
+                      isDefault
+                      name
+                    }
+                  }
+                }
+              }
+              languageInterfaceContext {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+              nodeContext {
+                ... on Node {
+                  remoteTypeName: __typename
+                  entityId
+                  entityLanguage {
+                    id
+                  }
+                }
+              }
+              currentUserContext {
+                ... on User {
+                  remoteTypeName: __typename
+                  entityId
+                  entityLanguage {
+                    id
+                  }
+                }
+              }
+              breadcrumb {
+                ... on Link {
+                  url {
+                    remoteTypeName: __typename
+                  }
+                  text
+                }
+              }
+              path
+              routed
+            }
+            ... on ExternalUrl {
+              path
+              routed
+              request {
+                ... on ExternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+            }
+            ... on EntityCanonicalUrl {
+              pathAlias
+              pathInternal
+              request {
+                ... on InternalResponse {
+                  header
+                  code
+                  content
+                }
+              }
+              languageSwitchLinks {
+                ... on LanguageSwitchLink {
+                  active
+                  title
+                  url {
+                    ... on InternalUrl {
+                      ... on DefaultInternalUrl {
+                        pathAlias
+                        pathInternal
+                        request {
+                          ... on InternalResponse {
+                            header
+                            code
+                            content
+                          }
+                        }
+                        languageSwitchLinks {
+                          remoteTypeName: __typename
+                        }
+                        languageInterfaceContext {
+                          ... on Language {
+                            direction
+                            weight
+                            isLocked
+                            id
+                            argument
+                            isDefault
+                            name
+                          }
+                        }
+                        nodeContext {
+                          ... on Node {
+                            remoteTypeName: __typename
+                            entityId
+                            entityLanguage {
+                              id
+                            }
+                          }
+                        }
+                        currentUserContext {
+                          ... on User {
+                            remoteTypeName: __typename
+                            entityId
+                            entityLanguage {
+                              id
+                            }
+                          }
+                        }
+                        breadcrumb {
+                          ... on Link {
+                            url {
+                              remoteTypeName: __typename
+                            }
+                            text
+                          }
+                        }
+                        path
+                        routed
+                      }
+                      remoteTypeName: __typename
+                    }
+                  }
+                  language {
+                    ... on Language {
+                      direction
+                      weight
+                      isLocked
+                      id
+                      argument
+                      isDefault
+                      name
+                    }
+                  }
+                }
+              }
+              languageInterfaceContext {
+                ... on Language {
+                  direction
+                  weight
+                  isLocked
+                  id
+                  argument
+                  isDefault
+                  name
+                }
+              }
+              nodeContext {
+                ... on Node {
+                  remoteTypeName: __typename
+                  entityId
+                  entityLanguage {
+                    id
+                  }
+                }
+              }
+              currentUserContext {
+                ... on User {
+                  remoteTypeName: __typename
+                  entityId
+                  entityLanguage {
+                    id
+                  }
+                }
+              }
+              breadcrumb {
+                ... on Link {
+                  url {
+                    remoteTypeName: __typename
+                  }
+                  text
+                }
+              }
+              path
+              routed
+              entity {
+                remoteTypeName: __typename
+              }
+            }
+          }
+          entityLanguage {
+            ... on Language {
+              direction
+              weight
+              isLocked
+              id
+              argument
+              isDefault
+              name
+            }
           }
         }
       }

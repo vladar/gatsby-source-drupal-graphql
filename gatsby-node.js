@@ -6,9 +6,13 @@ const {
   buildNodeDefinitions,
   loadSchema,
   createDefaultQueryExecutor,
+  writeCompiledQueries,
 } = require(`gatsby-graphql-source-toolkit`)
-const { print } = require(`gatsby/graphql`)
+const { upperFirst, lowerFirst, flatMap } = require(`lodash`)
 const fs = require(`fs-extra`)
+
+const debugDir = __dirname + `/.cache/compiled-graphql-queries`
+const fragmentsDir = __dirname + `/src/drupal-fragments`
 
 const PaginateDrupal = {
   name: "LimitOffsetDrupal",
@@ -35,12 +39,32 @@ const PaginateDrupal = {
   },
 }
 
-async function writeCompiledQueries(nodeDocs) {
-  const debugDir = __dirname + `/.cache/compiled-graphql-queries`
-  await fs.ensureDir(debugDir)
-  for (const [remoteTypeName, document] of nodeDocs) {
-    await fs.writeFile(debugDir + `/${remoteTypeName}.graphql`, print(document))
+function queryFieldToEntityType(schema, fieldName) {
+  const queryType = schema.getQueryType()
+  const queryFields = queryType.getFields()
+
+  const match = fieldName.match(/^(.+)Query$/)
+  if (
+    !match ||
+    !match[1] ||
+    queryFields[fieldName].type.name !== `EntityQueryResult`
+  ) {
+    return
   }
+  const entityTypeName = upperFirst(match[1])
+  return schema.getType(entityTypeName)
+}
+
+function findEntityTypes(schema) {
+  const queryFields = schema.getQueryType().getFields()
+
+  return Object.keys(queryFields)
+    .map(fieldName => queryFieldToEntityType(schema, fieldName))
+    .filter(Boolean)
+}
+
+function getQueryFieldName(entityType) {
+  return lowerFirst(entityType) + `Query`
 }
 
 async function createSourcingConfig(gatsbyApi, pluginOptions) {
@@ -52,81 +76,54 @@ async function createSourcingConfig(gatsbyApi, pluginOptions) {
   }
 
   // Step1. Setup remote schema:
-  const execute = createDefaultQueryExecutor(url)
+  const defaultExecute = createDefaultQueryExecutor(url)
+  const execute = args => {
+    // console.log(args.operationName, args.variables)
+    return defaultExecute(args)
+  }
   const schema = await loadSchema(execute)
-
-  // const entityInterface = schema.getType(`Entity`)
-  // const allEntities = schema.getPossibleTypes(entityInterface)
+  const entityTypes = findEntityTypes(schema)
 
   // Step2. Configure Gatsby node types
-  const gatsbyNodeTypes = [
-    {
-      remoteTypeName: `NodeArticle`,
-      queries: [
-        ...languages.map(language => `
-          query LIST_NodeArticle_${language} {
-            nodeQuery(
-              filter: {
-                conditions: [
-                  { operator: EQUAL, field: "status", value: ["1"] }
-                  { operator: EQUAL, field: "type", value: ["article"] }
-                ]
-              }
+  const gatsbyNodeTypes = flatMap(entityTypes, entityType => {
+    const entityFieldName = getQueryFieldName(entityType.name)
+
+    // Entity type can be an object type (e.g. User) OR an interface (e.g. Node)
+    // (object types have `getInterfaces` methods, so using it to differentiate)
+    const subTypes = entityType.getInterfaces
+      ? [entityType]
+      : schema.getPossibleTypes(entityType)
+
+    return subTypes.map(type => {
+      const idFragmentName = `_${type.name}Id_`
+
+      return {
+        remoteTypeName: type.name,
+        queries: [
+          ...languages.map(
+            language => `
+          query LIST_${type.name}_${language} {
+            ${entityFieldName}(
+              # The filters below are important for performance
+              # (need to figure out a generic way to filter entity sub-types)
+              #
+              # filter: {
+              #   conditions: [
+              #     { operator: EQUAL, field: "status", value: ["1"] }
+              #     { operator: EQUAL, field: "type", value: ["article"] }
+              #   ]
+              # }
               limit: $limit
               offset: $offset
             ) {
-              entities(language: ${language}) { ..._NodeArticleId_ }
-            }
-          }
-        `),
-        `
-          fragment _NodeArticleId_ on NodeArticle {
-            __typename
-            entityId
-            entityLanguage {
-              id
-            }
-          }
-        `
-      ].join("\n")
-    },
-    {
-      remoteTypeName: `NodePage`,
-      queries: `
-        query LIST_NodePage {
-          nodeQuery(limit: $limit offset: $offset) {
-            entities { ..._NodePageId_ }
-          }
-        }
-        fragment _NodePageId_ on NodePage {
-          __typename
-          entityId
-          entityLanguage {
-            id
-          }
-        }
-      `,
-    },
-  ]
-
-  // Not sure yet how to map other types to root query fields
-  // TODO
-  const type = schema.getType(`Entity`)
-  const nodeTypes = schema.getPossibleTypes(type)
-  const dynamicTypes = nodeTypes
-    .filter(type => !gatsbyNodeTypes.some(t => t.remoteTypeName === type.name))
-    .map(type => {
-      const idFragmentName = `_${type.name}Id_`
-      return {
-        remoteTypeName: type.name,
-        queries: `
-          query LIST_${type.name} {
-            commentQuery(limit: $limit offset: $offset) {
-              entities {
+              entities(language: ${language}) {
                 ...${idFragmentName}
               }
             }
           }
+        `
+          ),
+          `
           fragment ${idFragmentName} on ${type.name} {
             __typename
             entityId
@@ -135,16 +132,16 @@ async function createSourcingConfig(gatsbyApi, pluginOptions) {
             }
           }
         `,
+        ].join("\n"),
       }
     })
-
-  gatsbyNodeTypes.push(...dynamicTypes)
+  })
 
   // Step3. Provide (or generate) fragments with fields to be fetched
-  const fragments = await readOrGenerateDefaultFragments(
-    `./src/drupal-fragments`,
-    { schema, gatsbyNodeTypes }
-  )
+  const fragments = await readOrGenerateDefaultFragments(fragmentsDir, {
+    schema,
+    gatsbyNodeTypes,
+  })
 
   // Step4. Compile sourcing queries
   const documents = compileNodeQueries({
@@ -154,7 +151,7 @@ async function createSourcingConfig(gatsbyApi, pluginOptions) {
   })
 
   // Write compiled queries for debugging
-  await writeCompiledQueries(documents)
+  await writeCompiledQueries(debugDir, documents)
 
   return {
     gatsbyApi,
